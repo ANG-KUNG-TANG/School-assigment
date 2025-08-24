@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UnitCalculator</title>
+</head>
+<body
+  style="background:#f4f8fb; font-family:'Segoe UI', Arial, sans-serif; display:flex; flex-direction:column; align-items:center; min-height:100vh; margin:0;"
+>
+  <div
+    style="background:#fff; margin-top:60px; padding:32px 40px; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.08); min-width:320px; text-align:center;"
+  >
+    <h1 style="color:#2d6cdf; margin-bottom:8px;">Unit Calculator</h1>
+    <p style="color:#555; margin-bottom:24px;">
+      Convert from <b>meter</b> to <b>centimeter</b>
+    </p>
+
+    <label for="input" style="font-weight:500; color:#333;">
+      Input Unit:
+    </label>
+    <input
+      id="input"
+      type="text"
+      placeholder="Enter meters"
+      style="padding:8px 12px; border:1px solid #bfc9d1; border-radius:6px; font-size:1rem; margin-left:8px; width:120px; transition:border 0.2s; outline:none;"
+      onfocus="this.style.border='1.5px solid #2d6cdf';"
+      onblur="this.style.border='1px solid #bfc9d1';"
+    /><br />
+
+    <button
+      id="button"
+      style="margin-top:18px; padding:10px 28px; background:#2d6cdf; color:#fff; border:none; border-radius:6px; font-size:1rem; cursor:pointer; transition:background 0.2s;"
+      onmouseover="this.style.background='#1a4fa0';"
+      onmouseout="this.style.background='#2d6cdf';"
+    >
+      Calculate
+    </button>
+
+    <label
+      id="result"
+      style="display:block; margin-top:24px; font-size:1.1rem; color:#1a4fa0; min-height:24px; font-weight:500;"
+    ></label>
+
+    <button
+      id="backBtn"
+      style="margin-top:20px; padding:10px 28px; background:#f7fafc; color:#2d6cdf; border:1.5px solid #bfc9d1; border-radius:6px; font-size:1rem; cursor:pointer; transition:background 0.2s, color 0.2s, border-color 0.2s;"
+      onmouseover="this.style.background='#e0eafc'; this.style.color='#1a4fa0'; this.style.borderColor='#2d6cdf';"
+      onmouseout="this.style.background='#f7fafc'; this.style.color='#2d6cdf'; this.style.borderColor='#bfc9d1';"
+    >
+      ⬅ Back to Grade Calculator
+    </button>
+  </div>
+
+  <script>
+    let button = document.getElementById('button');
+    let result = document.getElementById('result');
+    let backBtn = document.getElementById('backBtn');
+
+    button.onclick = function () {
+      let numberValue = document.getElementById('input').value.trim();
+
+      if (numberValue === '' || isNaN(numberValue)) {
+        result.textContent = '❌ Please enter a valid number.';
+        result.style.color = 'red';
+        return;
+      }
+
+      let meters = Number(numberValue);
+      if (meters < 0) {
+        result.textContent = '❌ Please enter a positive value.';
+        result.style.color = 'red';
+        return;
+      }
+
+      let calculation = meters * 100;
+      result.textContent = meters + ' meter(s) = ' + calculation + ' cm';
+      result.style.color = '#1a4fa0';
+    };
+
+    backBtn.addEventListener('click', function () {
+      window.location.href = 'grade_calculator.html'; // adjust if needed
+    });
+  </script>
+</body>
+</html>

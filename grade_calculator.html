@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grade Calculator</title>
+</head>
+<body style="font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+             display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; padding: 20px;">
+  <div style="background: #fff; padding: 40px 36px; border-radius: 16px; box-shadow: 0 8px 20px rgba(38, 78, 161, 0.15);
+              max-width: 400px; width: 100%; text-align: center;">
+    <h1 style="font-size: 2.4rem; color: #22223b; margin-bottom: 24px; letter-spacing: 1px; font-weight: 700;">Equivalent Grade Score</h1>
+
+    <label for="input" style="font-size: 1.1rem; color: #4a5568; display: block; margin-bottom: 10px; font-weight: 600;">Enter your score</label>
+    <input id="input" type="text" placeholder="0 - 100" style="width: 100%; padding: 12px 14px; border: 1.5px solid #cbd5e0; border-radius: 8px;
+           font-size: 1.1rem; margin-bottom: 24px; box-sizing: border-box; transition: border-color 0.3s;" 
+           onfocus="this.style.borderColor='#3182ce'; outline:none;" onblur="this.style.borderColor='#cbd5e0';"/>
+
+    <input id="button" type="submit" value="Check Grade" style="width: 100%; padding: 14px 0; background: #3182ce; color: white; font-weight: 700;
+           font-size: 1.15rem; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s;"
+           onmouseover="this.style.background='#2c5282';" onmouseout="this.style.background='#3182ce';"/>
+
+    <label id="label" style="display: block; margin-top: 30px; font-size: 1.4rem; font-weight: 700; min-height: 1.5em;
+           color: #3182ce; letter-spacing: 0.6px; user-select: none;"></label>
+
+    <button id="backToChange" style="margin-top: 40px; width: 100%; padding: 12px 0; background: #edf2f7; color: #3182ce;
+            border: 1.5px solid #bee3f8; font-weight: 600; font-size: 1.1rem; border-radius: 8px; cursor: pointer;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;"
+            onmouseover="this.style.background='#bee3f8'; this.style.color='#2c5282'; this.style.borderColor='#2c5282';"
+            onmouseout="this.style.background='#edf2f7'; this.style.color='#3182ce'; this.style.borderColor='#bee3f8';">
+      ⬅ Back to Change Calculator
+    </button>
+
+    <button id="backToUnit" style="margin-top: 12px; width: 100%; padding: 12px 0; background: #edf2f7; color: #3182ce;
+            border: 1.5px solid #bee3f8; font-weight: 600; font-size: 1.1rem; border-radius: 8px; cursor: pointer;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;"
+            onmouseover="this.style.background='#bee3f8'; this.style.color='#2c5282'; this.style.borderColor='#2c5282';"
+            onmouseout="this.style.background='#edf2f7'; this.style.color='#3182ce'; this.style.borderColor='#bee3f8';">
+      ⬅ Back to Unit Calculator
+    </button>
+  </div>
+
+  <script>
+    const button = document.getElementById('button');
+    const label = document.getElementById('label');
+    button.addEventListener('click', () => {
+      const input = document.getElementById('input').value.trim();
+      const score = Number(input);
+
+      if (input === '') {
+        label.textContent = '⚠️ Please enter your score.';
+        label.style.color = '#e53e3e';
+        return;
+      }
+      if (isNaN(score) || score < 0 || score > 100) {
+        label.textContent = '⚠️ Score must be a number between 0 and 100.';
+        label.style.color = '#e53e3e';
+        return;
+      }
+
+      label.style.color = '#3182ce';
+      if (score >= 90) label.textContent = 'Grade A';
+      else if (score >= 80) label.textContent = 'Grade B';
+      else if (score >= 70) label.textContent = 'Grade C';
+      else if (score >= 60) label.textContent = 'Grade D';
+      else label.textContent = 'Grade F';
+    });
+
+    document.getElementById('backToChange').addEventListener('click', () => {
+      window.location.href = 'calchange.html';
+    });
+
+    document.getElementById('backToUnit').addEventListener('click', () => {
+      window.location.href = 'unit_calculator.html';
+    });
+  </script>
+</body>
+</html>
